@@ -123,7 +123,14 @@ namespace agora {
                 config.appliteDir = const_cast<char*>(str_appliteDir.c_str());
                 config.cfgFilePath = const_cast<char*>(str_cfgPath.c_str());
                 config.isMixingEnabled = true;
-                config.mixedVideoAudio = agora::linuxsdk::MIXED_AV_DEFAULT;
+
+                // Note: https://docs.agora.io/en/Recording/API%20Reference/recording_cpp/namespaceagora_1_1linuxsdk.html#af8f3a6529f57ccfa3621014808d1283a
+                // 映像+音声ファイルに変更
+                config.mixedVideoAudio = agora::linuxsdk::MIXED_AV_CODEC_V2;
+                // Note: https://docs.agora.io/en/Recording/API%20Reference/recording_cpp/namespaceagora_1_1linuxsdk.html#a8e652e4f981c729da31b3dbb73b8d087
+                // 音声を192Kbpsステレオに変更
+                config.audioProfile = agora::linuxsdk::AUDIO_PROFILE_HIGH_QUALITY_STEREO;
+
                 config.idleLimitSec = 10;
                 // config.decodeVideo = agora::linuxsdk::VIDEO_FORMAT_MIX_JPG_FILE_TYPE;
                 config.channelProfile = agora::linuxsdk::CHANNEL_PROFILE_LIVE_BROADCASTING;
